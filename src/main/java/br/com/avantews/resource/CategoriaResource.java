@@ -1,5 +1,6 @@
 package br.com.avantews.resource;
 
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class CategoriaResource {
 
 	//Apresenta dados para o final user!
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 			Categoria objeto = categoriaService.buscar(id);
 			return ResponseEntity.ok().body(objeto);
 	}
@@ -31,6 +32,14 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(objetoCategoria.getId()).toUri();
 	return ResponseEntity.created(uri).build();
+	}
+
+	//Mapeando e realizando update de dados na BD e criação de metodo PUT para Json
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria, @PathVariable Integer id){
+		objetoCategoria.setId(id);
+		objetoCategoria = categoriaService.update(objetoCategoria);
+		return ResponseEntity.noContent().build();
 	}
 
 }
