@@ -1,5 +1,6 @@
 package br.com.avantews.resource;
 
+import br.com.avantews.dto.CategoriaDTO;
 import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import br.com.avantews.services.CategoriaService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -46,6 +49,20 @@ public class CategoriaResource {
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         categoriaService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/detalhes", method = RequestMethod.GET)
+    public ResponseEntity<List<Categoria>> findAll(){
+        List<Categoria> list = categoriaService.lista();
+        return ResponseEntity.ok().body(list);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAllCategoria(){
+        List<Categoria> list = categoriaService.listaCategoria();
+        //Strem map percorre o objeo CategoriaDTO e verifica quais atributos precisa parear com a lista do objeto Categoria
+        List<CategoriaDTO> dtoList = list.stream().map(objeto -> new CategoriaDTO(objeto)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(dtoList);
     }
 
 }

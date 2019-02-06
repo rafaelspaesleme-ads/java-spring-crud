@@ -1,5 +1,6 @@
 package br.com.avantews.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import br.com.avantews.services.exception.IntegridadeDeDadosException;
@@ -45,5 +46,13 @@ public class CategoriaService {
         } catch (DataIntegrityViolationException ex) {
             throw new IntegridadeDeDadosException("Dado não pode ser excluido! Objeto " + Categoria.class + " esta relacionada com outra entidade.");
         }
+    }
+
+    public List<Categoria> lista() {
+        return categoriaRepository.findAll();
+    }
+
+    public List<Categoria> listaCategoria() {
+        return categoriaRepository.findAll();
     }
 }
