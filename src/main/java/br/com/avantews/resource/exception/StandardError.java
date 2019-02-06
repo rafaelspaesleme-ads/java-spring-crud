@@ -1,15 +1,20 @@
 package br.com.avantews.resource.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer status;
 	private String msg;
-	private Long timeStamp;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime timeStamp;
 	
-	public StandardError(Integer status, String msg, Long timeStamp) {
+	public StandardError(Integer status, String msg, LocalDateTime timeStamp) {
 		super();
 		this.status = status;
 		this.msg = msg;
@@ -32,11 +37,11 @@ public class StandardError implements Serializable {
 		this.msg = msg;
 	}
 
-	public Long getTimeStamp() {
+	public LocalDateTime getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(Long timeStamp) {
+	public void setTimeStamp(LocalDateTime timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 }
