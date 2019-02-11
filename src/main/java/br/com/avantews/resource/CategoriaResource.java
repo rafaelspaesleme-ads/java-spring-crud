@@ -11,6 +11,7 @@ import br.com.avantews.domain.Categoria;
 import br.com.avantews.services.CategoriaService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +32,9 @@ public class CategoriaResource {
 
     //Mapeamento e inserção de dados na DB e criação de metodo post para Json
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Categoria objetoCategoria) {
-        objetoCategoria = categoriaService.insert(objetoCategoria);
+    public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objetoCategoriaDTO) {
+        Categoria objetoCategoria = categoriaService.fromDTO(objetoCategoriaDTO);
+        objetoCategoria= categoriaService.insert(objetoCategoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(objetoCategoria.getId()).toUri();
         return ResponseEntity.created(uri).build();
@@ -40,7 +42,8 @@ public class CategoriaResource {
 
     //Mapeando e realizando update de dados na BD e criação de metodo PUT para Json
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody Categoria objetoCategoria, @PathVariable Integer id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objetoCategoriaDTO, @PathVariable Integer id) {
+        Categoria objetoCategoria = categoriaService.fromDTO(objetoCategoriaDTO);
         objetoCategoria.setId(id);
         objetoCategoria = categoriaService.update(objetoCategoria);
         return ResponseEntity.noContent().build();
@@ -78,7 +81,4 @@ public class CategoriaResource {
         Page<CategoriaDTO> dtoList = list.map(objeto -> new CategoriaDTO(objeto));
         return ResponseEntity.ok().body(dtoList);
     }
-
-
-
 }

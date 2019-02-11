@@ -3,6 +3,7 @@ package br.com.avantews.services;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.avantews.dto.CategoriaDTO;
 import br.com.avantews.services.exception.IntegridadeDeDadosException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -63,5 +64,9 @@ public class CategoriaService {
     public Page<Categoria> listaPageCategoria(Integer contPage, Integer linesPerPage, String direction, String orderBy) {
         PageRequest pageRequest = PageRequest.of(contPage, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return categoriaRepository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO categoriaDTO){
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
     }
 }
