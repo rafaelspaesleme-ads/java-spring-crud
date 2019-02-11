@@ -6,6 +6,9 @@ import java.util.Optional;
 import br.com.avantews.services.exception.IntegridadeDeDadosException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.avantews.domain.Categoria;
@@ -54,5 +57,11 @@ public class CategoriaService {
 
     public List<Categoria> listaCategoria() {
         return categoriaRepository.findAll();
+    }
+
+    //Criando controle de paginação em cima da lista de categorias.
+    public Page<Categoria> listaPageCategoria(Integer contPage, Integer linesPerPage, String direction, String orderBy) {
+        PageRequest pageRequest = PageRequest.of(contPage, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return categoriaRepository.findAll(pageRequest);
     }
 }

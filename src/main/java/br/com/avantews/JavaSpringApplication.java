@@ -63,6 +63,12 @@ public class JavaSpringApplication implements CommandLineRunner {
         //Instanciando objetos e gerando informações
         Categoria cat1 = new Categoria(null, "Informática");
         Categoria cat2 = new Categoria(null, "Escritório");
+        Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+        Categoria cat4 = new Categoria(null, "Eletrodomestico");
+        Categoria cat5 = new Categoria(null, "Educação");
+        Categoria cat6 = new Categoria(null, "Games");
+        Categoria cat7 = new Categoria(null, "Alimentos");
+        Categoria cat8 = new Categoria(null, "Celulares");
         Estado est1 = new Estado(null, "Minas Gerais");
         Estado est2 = new Estado(null, "Rio de Janeiro");
 
@@ -116,7 +122,7 @@ public class JavaSpringApplication implements CommandLineRunner {
         cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 
         //Salvando categorias na base de dadoss
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8));
         //Salvando produtos na base de dados
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
         //Salvando estados na base de dados

@@ -3,6 +3,7 @@ package br.com.avantews.resource;
 import br.com.avantews.dto.CategoriaDTO;
 import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,5 +65,20 @@ public class CategoriaResource {
         List<CategoriaDTO> dtoList = list.stream().map(objeto -> new CategoriaDTO(objeto)).collect(Collectors.toList());
         return ResponseEntity.ok().body(dtoList);
     }
+
+    //Inserindo configuração de paginação de lista em lista de categoria.
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoriaDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer contPage,
+            @RequestParam(value = "lines", defaultValue = "12") Integer linesPerPage,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy){
+        Page<Categoria> list = categoriaService.listaPageCategoria(contPage, linesPerPage, direction, orderBy);
+        //Strem map percorre o objeo CategoriaDTO e verifica quais atributos precisa parear com a lista do objeto Categoria
+        Page<CategoriaDTO> dtoList = list.map(objeto -> new CategoriaDTO(objeto));
+        return ResponseEntity.ok().body(dtoList);
+    }
+
+
 
 }
