@@ -23,7 +23,7 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     //tratamento de objetos da base de dados
-    public Cliente buscar(Integer id){
+    public Cliente buscar(Integer id) {
         Optional<Cliente> objeto = clienteRepository.findById(id);
         return objeto.orElseThrow(() -> new ObjetoNaoEncontradoException
                 ("Objeto não encontrado na base de dados. Tipo: " + Cliente.class.getName()));
@@ -60,11 +60,11 @@ public class ClienteService {
         return clienteRepository.findAll(pageRequest);
     }
 
-    public Cliente fromDTO(ClienteDTO clienteDTO){
+    public Cliente fromDTO(ClienteDTO clienteDTO) {
         return new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
     }
 
-    private void updateData(Cliente novoObjeto, Cliente objeto){
+    private void updateData(Cliente novoObjeto, Cliente objeto) {
         novoObjeto.setNome(objeto.getNome());
         novoObjeto.setEmail(objeto.getEmail());
     }

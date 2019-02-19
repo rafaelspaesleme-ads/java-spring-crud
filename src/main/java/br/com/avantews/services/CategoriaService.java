@@ -39,8 +39,9 @@ public class CategoriaService {
     //tratamento de objetos em forma de update na base de dados
     public Categoria update(Categoria objetoCategoria) {
         //Chamando metodo buscar para verificar qual id do objeto para que JPA reconheça que o metodo save será um metodo de atualização no banco
-        buscar(objetoCategoria.getId());
-        return categoriaRepository.save(objetoCategoria);
+        Categoria novoObjeto = buscar(objetoCategoria.getId());
+        updateData(novoObjeto, objetoCategoria);
+        return categoriaRepository.save(novoObjeto);
     }
 
     public void delete(Integer id) {
@@ -68,5 +69,9 @@ public class CategoriaService {
 
     public Categoria fromDTO(CategoriaDTO categoriaDTO){
         return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
+    }
+
+    private void updateData(Categoria novoObjeto, Categoria objeto) {
+        novoObjeto.setNome(objeto.getNome());
     }
 }
