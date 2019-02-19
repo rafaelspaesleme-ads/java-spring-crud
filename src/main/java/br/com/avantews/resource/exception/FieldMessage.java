@@ -24,17 +24,15 @@ public class FieldMessage implements Serializable {
         return fieldName;
     }
 
-    public FieldMessage comFieldName(String fieldName) {
+    public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
-        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public FieldMessage comMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
-        return this;
     }
 }
