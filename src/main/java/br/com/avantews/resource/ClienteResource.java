@@ -2,6 +2,7 @@ package br.com.avantews.resource;
 
 import br.com.avantews.domain.Cliente;
 import br.com.avantews.dto.ClienteDTO;
+import br.com.avantews.dto.ClienteNewDTO;
 import br.com.avantews.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,16 @@ public class ClienteResource {
     public ResponseEntity<?> find(@PathVariable Integer id){
         Cliente objeto = clienteService.buscar(id);
         return ResponseEntity.ok().body(objeto);
+    }
+
+    //Mapeamento e inserção de dados na DB e criação de metodo post para Json
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objetoClienteDTO) {
+        Cliente objetoCliente = clienteService.fromDTO(objetoClienteDTO);
+        objetoCliente= clienteService.insert(objetoCliente);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(objetoCliente.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     //Mapeando e realizando update de dados na BD e criação de metodo PUT para Json
