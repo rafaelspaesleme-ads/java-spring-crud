@@ -1,10 +1,22 @@
 package br.com.avantews.dto;
 
+import br.com.avantews.services.validation.ClientInsert;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+@ClientInsert
 public class ClienteNewDTO {
     private static final long serialVersionUID = 1L;
 
+    @NotEmpty(message = "Campo obrigatorio!")
+    @Length(min = 5, max = 255, message = "Nome deve estar entre 5 a 255 caracteres.")
     private String nome;
+    @NotEmpty(message = "campo obrigatorio!")
+    @Email(message = "Email invalido!")
     private String email;
+    @NotEmpty(message = "Campo obrigatorio!")
     private String cpfCnpj;
     private Integer tipo;
 
@@ -12,6 +24,7 @@ public class ClienteNewDTO {
     private String numero;
     private String complemento;
     private String bairro;
+
     private String cep;
 
     private String telefone1;
