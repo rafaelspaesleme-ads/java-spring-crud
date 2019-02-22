@@ -7,7 +7,7 @@ package br.com.avantews.domain.enums;
 
 /**
  *
- * @author RPL Solutec
+ * @author Name: Rafael Serdeiro Paes Leme E-mail: avante.webservices@gmail.com Corporate: AvanteWS
  */
 public enum TipoCliente {
     

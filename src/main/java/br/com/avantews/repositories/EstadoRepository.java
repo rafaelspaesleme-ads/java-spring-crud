@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author RPL Solutec
+ * @author Name: Rafael Serdeiro Paes Leme E-mail: avante.webservices@gmail.com Corporate: AvanteWS
  */
 public interface EstadoRepository extends JpaRepository<Estado, Integer>{
     

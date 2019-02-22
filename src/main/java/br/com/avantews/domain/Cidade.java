@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author RPL Solutec
+ * @author Name: Rafael Serdeiro Paes Leme E-mail: avante.webservices@gmail.com Corporate: AvanteWS
  */
 @Entity
 public class Cidade implements Serializable {

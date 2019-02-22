@@ -20,7 +20,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author RPL Solutec
+ * @author Name: Rafael Serdeiro Paes Leme E-mail: avante.webservices@gmail.com Corporate: AvanteWS
  */
 @Entity
 public class Cliente implements Serializable {
@@ -30,8 +30,12 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    @Column(unique = true)
     private String email;
-    private String cpfOrCnpj;
+
+    @Column(unique = true)
+    private String cpfOuCnpj;
     private Integer tipoCliente;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -48,11 +52,11 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String email, String cpfOrCnpj, TipoCliente tipoCliente) {
+    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
         this.setId(id);
         this.setNome(nome);
         this.setEmail(email);
-        this.setCpfOrCnpj(cpfOrCnpj);
+        this.setcpfOuCnpj(cpfOuCnpj);
         this.tipoCliente = (tipoCliente == null) ? null : tipoCliente.getCodigo();
     }
 
@@ -80,12 +84,12 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public String getCpfOrCnpj() {
-        return cpfOrCnpj;
+    public String getcpfOuCnpj() {
+        return cpfOuCnpj;
     }
 
-    public void setCpfOrCnpj(String cpfOrCnpj) {
-        this.cpfOrCnpj = cpfOrCnpj;
+    public void setcpfOuCnpj(String cpfOuCnpj) {
+        this.cpfOuCnpj = cpfOuCnpj;
     }
 
     public TipoCliente getTipoCliente() {

@@ -17,7 +17,7 @@ public class ClienteNewDTO {
     @Email(message = "Email invalido!")
     private String email;
     @NotEmpty(message = "Campo obrigatorio!")
-    private String cpfCnpj;
+    private String cpfOuCnpj;
     private Integer tipo;
 
     private String logradouro;
@@ -53,11 +53,11 @@ public class ClienteNewDTO {
     }
 
     public String getCpfCnpj() {
-        return cpfCnpj;
+        return cpfOuCnpj;
     }
 
     public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+        this.cpfOuCnpj = cpfCnpj;
     }
 
     public Integer getTipo() {
