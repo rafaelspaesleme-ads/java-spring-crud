@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.avantews</groupId>
-	<artifactId>JavaSpring</artifactId>
+	<artifactId>JavaSpringCRUD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JavaSpring</name>
+	<name>JavaSpringCRUD</name>
 	<description>Meu primeiro projeto pessoal em Spring Boot</description>
 
 	<properties>
