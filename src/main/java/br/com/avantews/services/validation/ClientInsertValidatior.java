@@ -44,7 +44,7 @@ public class ClientInsertValidatior implements ConstraintValidator<ClientInsert,
         }
 
         Optional<Cliente> clienteRecebeEmail = clienteRepository.findByEmail(clienteNewDTO.getEmail());
-        Optional<Cliente> clienteRecebeCpfCnpj = clienteRepository.findBycpfOuCnpj(clienteNewDTO.getCpfCnpj());
+        Optional<Cliente> clienteRecebeCpfCnpj = clienteRepository.findByCpfOuCnpj(clienteNewDTO.getCpfCnpj());
 
         if (clienteRecebeEmail.isPresent()) {
 
