@@ -17,12 +17,12 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
     @Query("SELECT DISTINCT produto "+
            "FROM Produto produto "+
-           "INNER_JOIN "+
+           "INNER JOIN "+
            "produto.categorias categoria "+
            "WHERE "+
            "produto.nome LIKE %:nome% "+
            "AND categoria IN :categorias")
-    Page<Produto> search(@Param("nome") String nome, 
+    Page<Produto> search(@Param("nome") String nome,
                          @Param("categorias") List<Categoria> categorias, Pageable pageRequest);
 		
 }
