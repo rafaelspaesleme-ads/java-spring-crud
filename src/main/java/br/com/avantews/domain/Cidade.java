@@ -5,8 +5,6 @@
  */
 package br.com.avantews.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;

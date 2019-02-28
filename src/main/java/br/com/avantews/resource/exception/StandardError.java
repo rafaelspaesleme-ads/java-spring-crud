@@ -3,7 +3,6 @@ package br.com.avantews.resource.exception;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class StandardError implements Serializable {

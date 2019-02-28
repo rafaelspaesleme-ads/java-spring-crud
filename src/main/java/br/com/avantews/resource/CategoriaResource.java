@@ -1,7 +1,6 @@
 package br.com.avantews.resource;
 
 import br.com.avantews.dto.CategoriaDTO;
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

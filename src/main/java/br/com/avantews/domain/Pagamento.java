@@ -1,7 +1,6 @@
 package br.com.avantews.domain;
 
 import br.com.avantews.domain.enums.EstadoPagamento;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
